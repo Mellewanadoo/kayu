@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Scan from "./views/Scan";
 import {getInfosByCodeProduit} from "./services/OpenFoodFactAPI";
 
-export function Main(){
-  const afterCodeScanned =(codeProduit:string) =>{
-      console.error(getInfosByCodeProduit(codeProduit))
-  }
+export function Main() {
+    const afterCodeScanned = (code: string) => {
+        getInfosByCodeProduit(code).then( (data) => console.error(data))
+    }
 
-    return(
-     <><Scan  afterCodeScanned={afterCodeScanned}/></>
+    return (
+        <><Scan afterCodeScanned={afterCodeScanned}/></>
     );
 }

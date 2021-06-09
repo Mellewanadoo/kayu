@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import {BarCodeEvent, BarCodeScanner} from "expo-barcode-scanner";
 
-type ScanProps={afterCodeScanned:(codeProduit:string)=>void}
+type ScanProps={afterCodeScanned:(code:string)=>void}
+
 export default function Scan({afterCodeScanned}:ScanProps) {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
     const [scanned, setScanned] = useState(false);
@@ -23,7 +24,7 @@ export default function Scan({afterCodeScanned}:ScanProps) {
     if (hasPermission === null) {
         return <Text>Requesting for camera permission</Text>;
     }
-    if (hasPermission === false) {
+    if (!hasPermission) {
         return <Text>No access to camera</Text>;
     }
 
