@@ -1,5 +1,6 @@
+/*
 import React from 'react';
-import Scan from "./views/Scan";
+import ScanScreen from "./views/ScanScreen";
 import {getInfosByCodeProduit} from "./services/OpenFoodFactAPI";
 
 export function Main() {
@@ -8,6 +9,7 @@ export function Main() {
     }
 
     return (
-        <><Scan afterCodeScanned={afterCodeScanned}/></>
+        <><ScanScreen afterCodeScanned={afterCodeScanned}/></>
     );
 }
+*/

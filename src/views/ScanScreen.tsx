@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import {BarCodeEvent, BarCodeScanner} from "expo-barcode-scanner";
+import {getInfosByCodeProduit} from "../services/OpenFoodFactAPI";
 
-type ScanProps={afterCodeScanned:(code:string)=>void}
+type ScanProps={}
 
-export default function Scan({afterCodeScanned}:ScanProps) {
+export default function ScanScreen({}:ScanProps) {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
     const [scanned, setScanned] = useState(false);
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function Scan({afterCodeScanned}:ScanProps) {
 
     const handleBarCodeScanned = ({ type, data }:BarCodeEvent) => {
         setScanned(true);
-        afterCodeScanned(data);
+        getInfosByCodeProduit(data).then( (productData) => console.error(productData));
 
         //alert(`${data}`);
     };
@@ -34,7 +35,7 @@ export default function Scan({afterCodeScanned}:ScanProps) {
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
             />
-            {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+            {scanned && <Button title={'Tap to ScanScreen Again'} onPress={() => setScanned(false)} />}
         </View>
     );
 }
