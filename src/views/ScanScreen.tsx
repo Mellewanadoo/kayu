@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import {BarCodeEvent, BarCodeScanner} from "expo-barcode-scanner";
 import {getInfosByCodeProduit} from "../services/OpenFoodFactAPI";
+import {useNavigation} from "@react-navigation/native";
 
 type ScanProps={}
 
 export default function ScanScreen({}:ScanProps) {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
     const [scanned, setScanned] = useState(false);
+    const { navigate } = useNavigation();
+
     useEffect(() => {
         (async () => {
             const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -17,7 +20,10 @@ export default function ScanScreen({}:ScanProps) {
 
     const handleBarCodeScanned = ({ type, data }:BarCodeEvent) => {
         setScanned(true);
-        getInfosByCodeProduit(data).then( (productData) => console.error(productData));
+        getInfosByCodeProduit(data).then( (productData) => {
+            const product:Product = productData.data
+            navigate("ProductScreen", {product})
+        });
 
         //alert(`${data}`);
     };
