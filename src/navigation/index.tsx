@@ -3,7 +3,7 @@ import React from "react";
 import MainStack from "./MainStack";
 
 export type RootStackParamList = {
-  Historique: undefined;
+  History: undefined;
   Scan: undefined;
   Recherche: undefined;
   Profil: undefined;
