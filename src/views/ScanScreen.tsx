@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 import {BarCodeEvent, BarCodeScanner} from "expo-barcode-scanner";
 import {getInfosByCodeProduit} from "../services/OpenFoodFactAPI";
 import {useNavigation} from "@react-navigation/native";
+import {Routes} from "../navigation/constants";
+import Product from "../types/Product";
 
 type ScanProps={}
 
@@ -22,7 +24,7 @@ export default function ScanScreen({}:ScanProps) {
         setScanned(true);
         getInfosByCodeProduit(data).then( (productData) => {
             const product:Product = productData.data
-            navigate("ProductScreen", {product})
+            navigate(Routes.PRODUCT, {product})
         });
 
         //alert(`${data}`);

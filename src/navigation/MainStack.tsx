@@ -3,10 +3,10 @@ import React from "react";
 import {RootStackParamList} from ".";
 import {Routes} from "./constants";
 import {FontAwesome} from "@expo/vector-icons";
-import ScanScreen from "../views/ScanScreen";
-import HistoriqueScreen from "../views/HistoriqueScreen";
 import SearchScreen from "../views/SearchScreen";
 import ProfilScreen from "../views/ProfilScreen";
+import HistoryStack from "./HistoryStack";
+import ScanStack from "./ScanStack";
 
 const {Navigator: Stack, Screen} =
     createBottomTabNavigator<RootStackParamList>();
@@ -22,7 +22,7 @@ const MainStack = () => {
                     tabBarLabel: "Historique",
                 }}
                 name={Routes.HISTORIQUE}
-                component={HistoriqueScreen}
+                component={HistoryStack}
             />
             <Screen
                 options={{
@@ -36,7 +36,7 @@ const MainStack = () => {
                     tabBarLabel: "Scan",
                 }}
                 name={Routes.SCAN}
-                component={ScanScreen}
+                component={ScanStack}
             />
             <Screen
                 options={{
