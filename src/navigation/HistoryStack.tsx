@@ -4,7 +4,7 @@ import React from "react";
 import {createStackNavigator} from '@react-navigation/stack';
 import ListScreen from "../views/ListScreen";
 
-export type HistoryStackParamsList = {
+type HistoryStackParamsList = {
     [Routes.LIST]: undefined
     [Routes.PRODUCT]: undefined
 }
